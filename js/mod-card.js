@@ -1,12 +1,15 @@
-const modCards = Array.from(document.querySelectorAll(".mod-card"));
-const colorThief = new ColorThief();
+window.addEventListener("load", (event) => {
+    const modCards = Array.from(document.querySelectorAll(".mod-card"));
+    const colorThief = new ColorThief();
 
-modCards.forEach((card) => {
-    const header = card.querySelector(".mod-card-header");
-    const wrapper = header.querySelector(".mod-card-header-wrapper");
-    const refImage = wrapper.querySelector("img");
-    const color = colorThief.getColor(refImage);
-    const [r, g, b] = color;
-    
-    wrapper.style.background = `linear-gradient(0deg, rgba(${r}, ${g}, ${b}, 0.3), rgba(${r}, ${g}, ${b}, 0.3)), linear-gradient(90deg, rgba(${r}, ${g}, ${b}, 0) 35.07%, rgb(${r}, ${g}, ${b}) 86.59%)`;
+    modCards.forEach((card) => {
+        const header = card.querySelector(".mod-card-header");
+        const wrapper = header.querySelector(".mod-card-header-wrapper");
+        const image = wrapper.querySelector("img");
+        const values = colorThief.getColor(image);
+        const [r, g, b] = values;
+        const color = `${r}, ${g}, ${b}`;
+        
+        wrapper.style.background = `linear-gradient(0deg, rgba(${color}, 0.3), rgba(${color}, 0.3)), linear-gradient(90deg, rgba(${color}, 0) 35.07%, rgb(${color}) 86.59%)`;
+    });
 });
